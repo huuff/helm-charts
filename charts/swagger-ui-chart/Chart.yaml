@@ -1,0 +1,7 @@
+apiVersion: v2
+name: swagger-ui
+description: Swagger UI with APIs git-synced
+
+type: application
+version: 0.1.1
+appVersion: "0.1.0"

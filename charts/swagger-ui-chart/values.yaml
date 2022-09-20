@@ -1,0 +1,22 @@
+replicas: 1
+digest: "sha256:c7075a3066b7c22d2b9a2a67c39ce99f8d31703d3541c14de8c99e19d929d6b3"
+port: "8080"
+rootApiPath: apis
+gitSync:
+  version: 3.1.6
+  refreshPeriod: "60"
+tls:
+  enabled: true
+  clusterIssuer: ""
+  secretName: ""
+ingress:
+  enabled: true
+  class: "nginx"
+  host: ""
+apis:
+  - name:
+    repo: ""
+    branch: master
+main:
+  name: ""
+  file: ""
