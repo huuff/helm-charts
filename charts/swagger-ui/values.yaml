@@ -1,5 +1,6 @@
 replicas: 1
 digest: "sha256:c7075a3066b7c22d2b9a2a67c39ce99f8d31703d3541c14de8c99e19d929d6b3"
+# TODO: I don't think this is even used? I'm not running swagger-ui with any port config
 port: "8080"
 rootApiPath: apis
 gitSync:
@@ -15,6 +16,9 @@ ingress:
   enabled: true
   class: "nginx"
   host: ""
+  auth:
+    enabled: false
+    secret: ""
 repos:
   - name: 
     url:

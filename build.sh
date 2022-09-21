@@ -1,7 +1,16 @@
 #!/usr/bin/env bash
+set -x
 
-# TODO: Store only the git repos somewhere, and clone them on each build
+rm -rf charts/*
+
+charts="$(jq -r 'keys[]' < repos.json)"
+for name in $charts;
+do
+  url="$(jq -r ".[\"$name\"]" < ./repos.json)"
+  dir="./charts/$name"
+  git clone "$url" "$dir"
+  rm -rf "$dir/.gitignore" "$dir/.git"
+done
 
 helm package ./charts/*
-#helm repo index --url https://github.com/huuff/helm-charts --merge ./index.yaml .
 helm repo index --url https://huuff.github.io/helm-charts --merge ./index.yaml .
