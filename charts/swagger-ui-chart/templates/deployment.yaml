@@ -26,7 +26,7 @@ spec:
                 [
                   {{- range $repo := .Values.repos }}
                     {{- range $entrypoint := $repo.entrypoints }}
-                      { url: "/{{ $.Values.rootApiPath }}/{{ $repo.name }}/{{ $entrypoint.file }}", name: "{{ $entrypoint.name }}"},
+                      { url: "/{{ $.Values.rootApiPath }}/{{ $repo.name }}/{{ $.Values.gitSync.currentDirName }}/{{ $entrypoint.file }}", name: "{{ $entrypoint.name }}"},
                     {{- end }}
                   {{- end }}
                 ]
@@ -51,9 +51,9 @@ spec:
             - name: GIT_SYNC_BRANCH
               value: {{ .branch }}
             - name: GIT_SYNC_DEST
-              value: {{ .name }}
+              value: {{ $.Values.gitSync.currentDirName }}
             - name: GIT_SYNC_ROOT
-              value: /{{ $.Values.rootApiPath }}
+              value: /{{ $.Values.rootApiPath }}/{{ .name }}
           lifecycle:
             postStart:
               exec:
@@ -61,7 +61,7 @@ spec:
                   - "sh"
                   - "-c"
                   - | 
-                    until [ -e /{{ $.Values.rootApiPath }}/{{ .name }} ]; do 
+                    until [ -e /{{ $.Values.rootApiPath }}/{{ .name }}/{{ $.Values.gitSync.currentDirName }} ]; do 
                       sleep 1
                     done
         {{- end }}

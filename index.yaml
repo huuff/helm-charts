@@ -3,7 +3,17 @@ entries:
   swagger-ui:
   - apiVersion: v2
     appVersion: 0.1.0
-    created: "2022-09-21T09:37:44.999400424+02:00"
+    created: "2022-09-21T13:30:21.51829246+02:00"
+    description: Swagger UI with APIs git-synced
+    digest: 2fa2f41ed674e9928ec32babd0816d6c30ac75dffce40204a1dff4a4c9288827
+    name: swagger-ui
+    type: application
+    urls:
+    - https://huuff.github.io/helm-charts/swagger-ui-0.3.0.tgz
+    version: 0.3.0
+  - apiVersion: v2
+    appVersion: 0.1.0
+    created: "2022-09-21T13:30:21.517226234+02:00"
     description: Swagger UI with APIs git-synced
     digest: c1e6b416996e313d534af64297f58ae43a805ef0c2fc9edf64c07138162dd37c
     name: swagger-ui
@@ -13,7 +23,7 @@ entries:
     version: 0.2.0
   - apiVersion: v2
     appVersion: 0.1.0
-    created: "2022-09-21T09:37:44.998300588+02:00"
+    created: "2022-09-21T13:30:21.515851726+02:00"
     description: Swagger UI with APIs git-synced
     digest: 816a84446974f72ea56a9616c791ecc5ea0d07b607c321008aff22e8e3d74bde
     name: swagger-ui
@@ -21,4 +31,4 @@ entries:
     urls:
     - https://huuff.github.io/helm-charts/swagger-ui-0.1.1.tgz
     version: 0.1.1
-generated: "2022-09-21T09:37:44.996925897+02:00"
+generated: "2022-09-21T13:30:21.510902814+02:00"
