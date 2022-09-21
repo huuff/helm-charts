@@ -3,5 +3,6 @@ name: swagger-ui
 description: Swagger UI with APIs git-synced
 
 type: application
-version: 0.1.1
+version: 0.2.0
+# TODO: What should I set here? I could put the swagger-ui image version and use it for pulling it... but I prefer to use a digest
 appVersion: "0.1.0"

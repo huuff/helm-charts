@@ -21,14 +21,23 @@ spec:
           ports:
             - containerPort: {{ .Values.port }}
           env:
-            # TODO: Try to create several using URLS and URLS_PRIMARY_NAME, but I'd need another model
-            - name: URL
-              value: /{{.Values.rootApiPath}}/{{ .Values.main.name }}/{{ .Values.main.file }}
+            - name: URLS
+              value: |
+                [
+                  {{- range $repo := .Values.repos }}
+                    {{- range $entrypoint := $repo.entrypoints }}
+                      { url: "/{{ $.Values.rootApiPath }}/{{ $repo.name }}/{{ $entrypoint.file }}", name: "{{ $entrypoint.name }}"},
+                    {{- end }}
+                  {{- end }}
+                ]
+            - name: URLS_PRIMARY_NAME
+              # TODO: Can I get the first entrypoint of the first repo if a primary was not given?
+              value: {{ .Values.main.name }}
           volumeMounts:
             - name: apis
               mountPath: /usr/share/nginx/html/{{ .Values.rootApiPath }}
               readOnly: true
-        {{- range .Values.apis }}
+        {{- range .Values.repos }}
         - name: git-sync-{{ .name }}
           image: "k8s.gcr.io/git-sync:v{{ $.Values.gitSync.version }}"
           volumeMounts:
@@ -38,7 +47,7 @@ spec:
             - name: GIT_SYNC_WAIT
               value: {{ $.Values.gitSync.refreshPeriod | quote }}
             - name: GIT_SYNC_REPO
-              value: {{ .repo }}
+              value: {{ .url }}
             - name: GIT_SYNC_BRANCH
               value: {{ .branch }}
             - name: GIT_SYNC_DEST

@@ -13,10 +13,12 @@ ingress:
   enabled: true
   class: "nginx"
   host: ""
-apis:
-  - name:
-    repo: ""
+repos:
+  - name: 
+    url:
     branch: master
+    entrypoints:
+      - name: 
+        file: 
 main:
   name: ""
-  file: ""
